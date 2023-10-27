@@ -13,17 +13,17 @@ source:
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python >=3.7,<4
+    - python
+    - wheel
   run:
     - numpy
     - pandas
-    - python >=3.7,<4
+    - python
     - typing_extensions >4.0.0
     - typing_inspect
 
@@ -36,11 +36,22 @@ test:
     - pip
 
 about:
-  home: https://github.com/DAGWorks-Inc/hamilton
-  summary: Hamilton, the micro-framework for creating dataframes.
-  license: BSD-3-Clause
+  doc_url: https://hamilton.dagworks.io/en/latest/
+  dev_url: https://github.com/DAGWorks-Inc/hamilton
+  home: https://hamilton.dagworks.io/en/latest/
+  license: BSD-3-Clause-Clear
+  license_family: BSD
   license_file: LICENSE
+  summary: The general purpose micro-orchestration framework for creating dataflows from python functions.
+           That is, your single tool to express things like data, ML, LLM pipelines/workflows, and even web request logic.
+  description: Hamilton is a novel paradigm for specifying a flow of delayed execution in python. It works on python objects
+               of any type and dataflows of any complexity. Core to the design of Hamilton is a clear mapping of function
+               name to artifact, allowing you to quickly grok the relationship between the code you write and the data you
+               produce. This paradigm makes modifications easy to build and track, ensures code is self-documenting, and
+               makes it natural to unit test your data transformations. When connected together, these functions form
+               a Directed Acyclic Graph (DAG), which the Hamilton framework can execute, optimize, and report on.
 
 extra:
   recipe-maintainers:
     - thewchan
+    - aniedzielaAnaconda
